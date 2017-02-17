@@ -33,25 +33,10 @@ scanner.o : scanner.c scanner.h
 	gcc $(OOPTS) scanner.c
 
 test :
-	#testing integer commandline#
-	sqsort -d
-	@echo
-	@echo
 	#testing integer file read#
 	sqsort -d num
 	@echo
 	@echo
-	#testing real commandline
-	sqsort -r
-	@echo
-	@echo
-	#testing string commandline#
-	sqsort -s
-	@echo
-	@echo
-	#testing name#
-	#sqsort -v
-	#@echo
-
+	
 clean   :
 	rm -f *.o sqsort

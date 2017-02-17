@@ -7,6 +7,8 @@
 #include "real.h"
 #include "comparator.h"
 
+#define ever ;;
+
 void displayString(FILE *fp,void *v){
   fprintf(fp,"\"%s\"",(char*)v);
 }
@@ -89,7 +91,7 @@ queue *fileOptionHandler(char option,char *fileToRead){
   return q;
 }
 
-void sqsort(queue *inQ,char option){
+void sqsort(queue *qOne,char option){
   Comparator comp = NULL;
   switch (option) {
     case 'r':
@@ -102,40 +104,38 @@ void sqsort(queue *inQ,char option){
       comp = stringComp;
       break;
   }
-  queue *outQ = newQueue(inQ->list->display);
-  stack *st = newStack(inQ->list->display);
+  queue *qTwo = newQueue(qOne->list->display);
+  stack *st = newStack(qOne->list->display);
   int b = 0;
-	int onlyOnce = 0;
-	while(1){
+	int flag = 0;
+	for (ever){
 		b = 0;
-		int size = sizeQueue(inQ);
+		int size = sizeQueue(qOne);
 		void *lastIn = NULL;
-
 		for(int i = 0; i < size; i++){
 			if(i == size-1){
 				int tempSize = sizeStack(st);
 				for(int i = 0; i < tempSize; i++){
-					if(comp(peekQueue(inQ), peekStack(st)) < 0){
-						enqueue(outQ, pop(st));
-						//break;
+					if(comp(peekQueue(qOne), peekStack(st)) < 0){
+						enqueue(qTwo, pop(st));
 					}
 				}
-				push(st, dequeue(inQ));
+				push(st, dequeue(qOne));
 				break;
 			}
-			void *temp = peekQueue(inQ);
+			void *temp = peekQueue(qOne);
 			if(sizeStack(st) != 0 && lastIn != NULL){
 				void *temp2 = peekStack(st);
 				if(comp(lastIn, temp) >= 0 && comp(lastIn, temp2) >= 0 && comp(temp2, temp) >= 0){
-					enqueue(outQ, pop(st));
+					enqueue(qTwo, pop(st));
 					i--;
 					continue;
 				}
 			}
-			temp = dequeue(inQ);
-			void *temp1 = peekQueue(inQ);
+			temp = dequeue(qOne);
+			void *temp1 = peekQueue(qOne);
 			if(comp(temp, temp1) >= 0){
-				enqueue(outQ, temp);
+				enqueue(qTwo, temp);
 				lastIn = temp;
 				b++;
 			}
@@ -145,22 +145,22 @@ void sqsort(queue *inQ,char option){
 		}
 		int sizestack = sizeStack(st);
 		for(int i = 0; i < sizestack; i++){
-			enqueue(outQ, pop(st));
+			enqueue(qTwo, pop(st));
 		}
 
 		for(int i = 0; i < size; i++){
-			enqueue(inQ, dequeue(outQ));
+			enqueue(qOne, dequeue(qTwo));
 		}
-		onlyOnce++;
+		flag++;
 		if(size-1 <= b){
 			break;
 		}
 		printf("\n");
-		displayQueue(stdout, inQ);
+		displayQueue(stdout, qOne);
 	}
-	if(onlyOnce == 1){
+	if(flag == 1){
 		printf("\n");
-		displayQueue(stdout, inQ);
+		displayQueue(stdout, qOne);
 	}
 	printf("\n");
 }
