@@ -4,14 +4,14 @@
 #include "real.h"
 #include "comparator.h"
 
-int intComp(void *v,void *w){
+int intComparator(void *v,void *w){
   return ((integer *) v)->value - ((integer *) w)->value;
 }
 
-int stringComp(void *a, void *b){  
+int stringComparator(void *a, void *b){
   return strcmp((char*)a,(char*)b);
 }
 
-int realComp(void *v, void *w){
+int realComparator(void *v, void *w){
   return ((real *) v)->value - ((real *) w)->value;
 }

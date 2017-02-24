@@ -42,6 +42,19 @@ void insertDLL(dll *items,int index,void *value){
     items->tail->prev = items->head;
     items->size = items->size + 1;
   }
+  else if(index > (items->size)/2 && index != 0 && index != items->size){
+    dllnode *temp = items->tail;
+    dllnode *h = newDLLNode(value);
+    for(int i = items->size - 1; i >= index; --i){
+      if(i == index){
+        temp->prev->next = h;
+        h->prev = temp->prev;
+        temp->prev = h;
+        h->next = temp;
+      }
+      temp = temp->prev;
+    }
+  }
   else if(index == items->size){
     dllnode *h = newDLLNode(value);
     dllnode *temp = items->tail;
@@ -107,8 +120,16 @@ void *removeDLL(dll *items,int index){
 }
 
 void unionDLL(dll *recipient,dll *donor){
-  if(donor->head == NULL){}
-  else if(recipient->head == NULL){}
+  if(donor->head == NULL && recipient->head != NULL){return;}
+  else if(recipient->head == NULL && donor->head != NULL){
+    recipient->head = donor->head;
+    recipient->tail = donor->tail;
+    donor->head = donor->tail = NULL;
+    recipient->size = donor->size;
+    donor->size = 0;
+    return;
+  }
+  else if(donor->head == NULL && recipient->head == NULL){return;}
   else{
     recipient->tail->next = donor->head;
     donor->head->prev = recipient->tail;

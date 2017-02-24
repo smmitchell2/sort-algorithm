@@ -24,7 +24,7 @@ double setReal(real *v,double x){
 }
 
 void displayReal(FILE *fp,void *v){
-  fprintf(fp,"%.1f",getReal(v));
+  fprintf(fp,"%f",getReal(v));
 }
 
 int compareReal(void *v,void *w){
