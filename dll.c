@@ -89,6 +89,16 @@ void *removeDLL(dll *items,int index){
     items->size = items->size - 1;
     return r;
   }
+  else if(index > (items->size)/2 && index != 0 && index != items->size - 1){
+    dllnode *temp = items->tail;
+    for(int i = items->size - 1; i >= index; --i){
+      if(i == index){
+        temp->prev->next = temp->next;
+        temp->next->prev = temp->prev;
+      }
+      temp = temp->prev;
+    }
+  }
   else if(index == items->size - 1){
     int i;
     dllnode *temp = items->head;
