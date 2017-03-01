@@ -1,4 +1,4 @@
-#include <stdlib.h>
+ #include <stdlib.h>
 #include <stdio.h>
 #include "dll.h"
 
@@ -51,6 +51,8 @@ void insertDLL(dll *items,int index,void *value){
         h->prev = temp->prev;
         temp->prev = h;
         h->next = temp;
+        items->size = items->size + 1;
+        break;
       }
       temp = temp->prev;
     }
@@ -95,6 +97,9 @@ void *removeDLL(dll *items,int index){
       if(i == index){
         temp->prev->next = temp->next;
         temp->next->prev = temp->prev;
+        temp = NULL;
+        items->size = items->size - 1;
+        break;
       }
       temp = temp->prev;
     }
