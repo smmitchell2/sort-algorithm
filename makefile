@@ -2,8 +2,14 @@ OBJS = scanner.o integer.o real.o sll.o dll.o comparator.o  queue.o stack.o sqso
 OOPTS = -Wall -std=c99 -c -g
 LOOPTS = -Wall -std=c99 -g
 
-sqsort : $(OBJS)
-	gcc $(LOOPTS) $(OBJS) -o sqsort
+#sqsort : $(OBJS)
+#	gcc $(LOOPTS) $(OBJS) -o sqsort
+
+test-dll : integer.o real.o dll.o
+	gcc $(LOOPTS) integer.o real.o dll.o -o test-dll
+
+test-dll.o : test-dll.c real.h integer.h dll.h 
+	gcc $(OOPTS) test-dll.c
 
 sqsort.o : sqsort.c integer.h real.h scanner.h comparator.h sll.h dll.h stack.h queue.h
 	gcc $(OOPTS) sqsort.c
@@ -34,9 +40,10 @@ scanner.o : scanner.c scanner.h
 
 test :
 	#testing integer file read#
-	sqsort -d num
+#	sqsort -d num
 	@echo
 	@echo
+	test-dll
 	
 clean   :
 	rm -f *.o sqsort

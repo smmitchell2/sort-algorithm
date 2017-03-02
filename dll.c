@@ -27,35 +27,13 @@ void insertDLL(dll *items,int index,void *value){
     items->tail = h;
     items->size = items->size + 1;
   }
-  else if(index == 0 && items->tail != NULL){
+  else if(index == 0 ){
     dllnode *temp = items->head;
     dllnode *h = newDLLNode(value);
     h->next = temp;
     temp->prev = h;
     items->head = h;
     items->size = items->size + 1;
-  }
-  else if(items->tail == NULL){
-    dllnode *h = newDLLNode(value);
-    items->tail = h;
-    items->head->next = h;
-    items->tail->prev = items->head;
-    items->size = items->size + 1;
-  }
-  else if(index > (items->size)/2 && index != 0 && index != items->size){
-    dllnode *temp = items->tail;
-    dllnode *h = newDLLNode(value);
-    for(int i = items->size - 1; i >= index; --i){
-      if(i == index){
-        temp->prev->next = h;
-        h->prev = temp->prev;
-        temp->prev = h;
-        h->next = temp;
-        items->size = items->size + 1;
-        break;
-      }
-      temp = temp->prev;
-    }
   }
   else if(index == items->size){
     dllnode *h = newDLLNode(value);
@@ -64,6 +42,25 @@ void insertDLL(dll *items,int index,void *value){
     h->prev = temp;
     items->tail = h;
     items->size = items->size + 1;
+  }
+  else if(index > (items->size)/2){
+    dllnode *temp = items->tail;
+    dllnode *h = newDLLNode(value); 
+    for(int i = items->size - 1; i >= index; --i){
+      if(i == index){
+        h->next = temp;
+        h->prev = temp->prev;
+        h->prev->next = h;
+        temp->prev = h;
+        //temp->prev->next = h;
+        //h->prev = temp->prev;
+        //temp->prev = h;
+        //h->next = temp;
+        items->size = items->size + 1;
+        break;
+      }
+      temp = temp->prev;
+    }
   }
   else {
     int i;
@@ -91,19 +88,6 @@ void *removeDLL(dll *items,int index){
     items->size = items->size - 1;
     return r;
   }
-  else if(index > (items->size)/2 && index != 0 && index != items->size - 1){
-    dllnode *temp = items->tail;
-    for(int i = items->size - 1; i >= index; --i){
-      if(i == index){
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
-        temp = NULL;
-        items->size = items->size - 1;
-        break;
-      }
-      temp = temp->prev;
-    }
-  }
   else if(index == items->size - 1){
     int i;
     dllnode *temp = items->head;
@@ -116,6 +100,19 @@ void *removeDLL(dll *items,int index){
           break;
       }
       temp = temp->next;
+    }
+  }
+  else if(index > (items->size)/2 && index != 0 && index != items->size - 1){
+    dllnode *temp = items->tail;
+    for(int i = items->size - 1; i >= index; --i){
+      if(i == index){
+        temp->prev->next = temp->next;
+        temp->next->prev = temp->prev;
+        temp = NULL;
+        items->size = items->size - 1;
+        break;
+      }
+      temp = temp->prev;
     }
   }
   else{
