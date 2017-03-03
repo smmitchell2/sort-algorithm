@@ -74,42 +74,43 @@ int main()
 	insertDLL(a,0,newInteger(86));//4
 	insertDLL(a,1,newInteger(49));//5
 	insertDLL(a,1,newInteger(62));//6
-	insertDLL(a,4,newInteger(90));//7
-	insertDLL(a,6,newInteger(63));//8
+	insertDLL(a,4,newInteger(90));//7 ?
+	insertDLL(a,6,newInteger(63));//8 ?
 	insertDLL(a,0,newInteger(40));//9
-	insertDLL(a,6,newInteger(72));//10
-	insertDLL(a,8,newInteger(11));//11	
-	insertDLL(a,9,newInteger(67));//12
-	insertDLL(a,5,newInteger(82));//13
-	insertDLL(a,13,newInteger(62));//14
-	insertDLL(a,10,newInteger(67));//15
-	insertDLL(a,10,newInteger(29));//16
+	insertDLL(a,6,newInteger(72));//10 ?
+	insertDLL(a,8,newInteger(11));//11	?
+	insertDLL(a,9,newInteger(67));//12 ?
+	insertDLL(a,5,newInteger(82));//13 
+	insertDLL(a,13,newInteger(62));//14 
+	insertDLL(a,10,newInteger(67));//15 ?
+	insertDLL(a,10,newInteger(29));//16 ?
 	insertDLL(a,0,newInteger(22));//17
 	insertDLL(a,3,newInteger(69));//18
-	insertDLL(a,15,newInteger(93));//19
+	insertDLL(a,15,newInteger(93));//19 ?
 	insertDLL(a,2,newInteger(11));//20
-	insertDLL(a,18,newInteger(29));//21
+	insertDLL(a,18,newInteger(29));//21 ?
 	insertDLL(a,1,newInteger(21));//22
 	insertDLL(a,1,newInteger(84));//23
-	insertDLL(a,20,newInteger(98));//24
-	insertDLL(a,20,newInteger(15));//25
-	insertDLL(a,24,newInteger(13));//26
+	insertDLL(a,20,newInteger(98));//24 ?
+	insertDLL(a,20,newInteger(15));//25 ?
+	insertDLL(a,24,newInteger(13));//26 ?
 	insertDLL(a,26,newInteger(91));//27
-	insertDLL(a,9,newInteger(56));//28
+	insertDLL(a,9,newInteger(56));//28  //62 49 56 
 	insertDLL(a,0,newInteger(62));//29
 	insertDLL(a,1,newInteger(96));//30
-	insertDLL(a,21,newInteger(5));//31
+	insertDLL(a,21,newInteger(5));//31 ?
 	insertDLL(a,7,newInteger(84));//32
-	insertDLL(a,20,newInteger(36));//33
+	insertDLL(a,20,newInteger(36));//33 ?
 	insertDLL(a,5,newInteger(46));//34
 	insertDLL(a,7,newInteger(13));//35
-	insertDLL(a,27,newInteger(24));//36
-	insertDLL(a,19,newInteger(82));//37
+	insertDLL(a,27,newInteger(24));//36 ?
+	insertDLL(a,19,newInteger(82));//37 ?
 	insertDLL(a,13,newInteger(14));//38
-	insertDLL(a,23,newInteger(34));//39
-	insertDLL(a,30,newInteger(43));//40
+	insertDLL(a,23,newInteger(34));//39 ?
+	insertDLL(a,30,newInteger(43));//40 ?
 	displayDLL(stdout,a);
 	free(a);
+
 
 	/*printf("\nTest 15: \n");
 	a = newDLL(displayInteger);
