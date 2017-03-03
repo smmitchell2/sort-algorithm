@@ -27,7 +27,7 @@ void insertDLL(dll *items,int index,void *value){
     items->tail = h;
     items->size = items->size + 1;
   }
-  else if(index == 0){
+  else if(index <= 0){
     dllnode *temp = items->head;
     dllnode *h = newDLLNode(value);
     h->next = temp;
@@ -43,10 +43,10 @@ void insertDLL(dll *items,int index,void *value){
     items->tail = h;
     items->size = items->size + 1;
   }
-  else if(index > items->size/2) {
+  else if(index >= items->size/2) {
     dllnode *temp = items->tail; 
     int i;
-    for(i = items->size - 1; i >= 0; --i){
+    for(i = items->size - 1; i >= index - 1; --i){
       if(i == index ){
         dllnode *h = newDLLNode(value);
         h->next = temp;
