@@ -99,7 +99,7 @@ void *removeDLL(dll *items,int index){
       temp = temp->next;
     }
   }
-  else if(index > (items->size)/2 && index != 0 && index != items->size - 1){
+  else if(index >= (items->size)/2){
     dllnode *temp = items->tail;
     for(int i = items->size - 1; i >= index; --i){
       if(i == index){
@@ -130,6 +130,7 @@ void *removeDLL(dll *items,int index){
 
 void unionDLL(dll *recipient,dll *donor){
   if(donor->head == NULL && recipient->head != NULL){return;}
+  else if(donor->head == NULL && recipient->head == NULL){return;}
   else if(recipient->head == NULL && donor->head != NULL){
     recipient->head = donor->head;
     recipient->tail = donor->tail;
@@ -137,8 +138,7 @@ void unionDLL(dll *recipient,dll *donor){
     recipient->size = donor->size;
     donor->size = 0;
     return;
-  }
-  else if(donor->head == NULL && recipient->head == NULL){return;}
+  } 
   else{
     recipient->tail->next = donor->head;
     donor->head->prev = recipient->tail;

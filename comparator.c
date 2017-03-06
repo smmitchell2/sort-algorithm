@@ -13,5 +13,9 @@ int stringComparator(void *a, void *b){
 }
 
 int realComparator(void *v, void *w){
-  return ((real *) v)->value - ((real *) w)->value;
+  double a = *(double*)v;
+	double b = *(double*)w;
+	if(a < b){return -1;}
+	else if(a > b){return 1;}
+	else{return 0;}
 }
